@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week Project — Settimana III</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- 
+      
+ HEADER SEMPLICE CON TITOLO
+ SOTTOTITOLO
+ E BOTTONE TEMA CHIARO E POI IN JAVASCRIPT ANCHE SCURO
+ 
+ -->
+    <header>
+      <div class="header">
+        <h1>La mia Bookshelf</h1>
+        <p>Aggiungi i libri che hai letto o che vuoi leggere.</p>
+      </div>
+      <button id="bottone-tema">Tema scuro</button>
+    </header>
+
+    <main>
+      <!-- 
+      
+ SEZIONE DELL AGGIUNGI UN LIBRO,
+  CON FORM TITOLO, AUTORE, ANNO E MENU TENDINA
+   DA LEGGERE O GIA LETTO
+ 
+ -->
+
+      <section class="form">
+        <h2>Aggiungi un libro</h2>
+        <form id="form-libro">
+          <div class="form-inputs">
+            <input type="text" id="input-titolo" placeholder="Titolo" />
+            <input type="text" id="input-autore" placeholder="Autore" />
+            <input type="number" id="input-anno" placeholder="Anno" />
+            <select id="select-stato">
+              <option value="da-leggere">Da leggere</option>
+              <option value="letto">Letto</option>
+            </select>
+          </div>
+          <button type="submit" id="btn-aggiungi">Aggiungi</button>
+        </form>
+      </section>
+      <!-- 
+      
+ SEZIONE DELLA 
+ RICERCA LIVE, 
+ FILTRO CON IL SELECT E POI
+ ANNO CRESCENTE E DECRESCENTE
+ 
+ -->
+      <section class="controlli">
+        <!-- Ricerca live, filtro (select), ordinamento -->
+        <input
+          type="text"
+          id="input-ricerca"
+          placeholder="Cerca per titolo o autore"
+        />
+
+        <select id="filtro-stato">
+          <option value="tutti">Tutti</option>
+          <option value="letto">Letti</option>
+          <option value="da-leggere">Da leggere</option>
+        </select>
+
+        <select id="ordine-anno">
+          <option value="crescente">Anno crescente</option>
+          <option value="decrescente">Anno decrescente</option>
+        </select>
+      </section>
+      <!-- 
+      
+ SEZIONE CON IL NUMNERO DI TOTALE
+ LETTI
+ DA LEGGERE
+ E UNA PROGRESS BAR CON VERA PERCENTUALE DINAMICA
+  NELLA STESSA SPAN
+ 
+ -->
+      <section class="statistiche">
+        <!-- Conteggi e/o barre orizzontali -->
+        <div class="contatori">
+          <div class="box-contatore">
+            <span id="quanti-totale" class="num-giallo">0</span>
+            <span class="titolino-statistiche">Totale</span>
+          </div>
+          <div class="box-contatore">
+            <span id="quanti-letti" class="num-giallo">0</span>
+            <span class="titolino-statistiche">Letti</span>
+          </div>
+          <div class="box-contatore">
+            <span id="quanti-da-leggere" class="num-giallo">0</span>
+            <span class="titolino-statistiche">Da leggere</span>
+          </div>
+        </div>
+        <div class="barra-progresso-container">
+          <div id="barra-progresso"></div>
+          <span class="titolino-statistiche">Percentuale letti</span>
+        </div>
+      </section>
+      <!-- 
+      
+ SEZIONE CON LE CARD DEI LIBRI CHE
+  INSERIRO DINAMICAMENTE
+  POI IN JAVASCRIPT
+ 
+ -->
+      <section class="lista" id="lista-libri">
+        <!-- Container che render() ricostruisce a ogni cambio di stato -->
+      </section>
+
+      <div id="notifica"></div>
+    </main>
+
+    <!-- 
+      
+UN PICCOLO
+FOOTER 
+FINALE
+ 
+ -->
+    <footer>
+      <!-- Autore, anno -->
+
+      <p>Javier Torres — Epicode Full Stack AI 2026</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

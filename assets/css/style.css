@@ -1,0 +1,315 @@
+/* CSS reset minimo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background: #fff;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Scrivi qui sotto i tuoi stili */
+
+header {
+  background-color: #171512; /* sfondo scuro */
+  color: #fef8eb; /* testo chiaro */
+  display: flex; /* flexbox */
+  justify-content: space-between; /* titoli a sinistra e bottone a destra */
+  align-items: center; /* tutto al centroo */
+  padding: 20px 40px; /* un po di spazio tra loro */
+}
+
+/* titolo dell header */
+.header h1 {
+  font-size: 24px; /* rimpicciolisco un pelo */
+  margin-bottom: 5px; /* un po di distanza dal p */
+}
+/* il p nell header */
+.header p {
+  color: #d7d7d7; /* grigino per il sottotitolo */
+  font-size: 14px; /* un pelo piu piccolo */
+}
+
+/* centro il main */
+main {
+  max-width: 1200px; /* do una grandezza massima al tutto */
+  margin: 0 auto; /* tutto il contenuto principale centrato */
+  padding: 30px 20px; /* distanzio un po dai bordi */
+}
+
+/* stile per i campi di testo */
+input[type="text"],
+input[type="number"],
+select {
+  padding: 10px 15px; /* adatta le caselle */
+  border: 1px solid #bbb9b9; /* colore caselle */
+  border-radius: 6px; /* un po di radius */
+  font-size: 14px; /* un po piu grandi */
+  background-color: #ffffff; /* sfondo chiaro*/
+  outline-color: chocolate; /* colore quando clicco */
+}
+
+/* tema scuro bottone */
+#bottone-tema {
+  border: 1px solid #ffffff; /* bordino sottile bianco */
+  color: #ffffff; /* colore testo */
+  padding: 8px 16px; /* un po di padding */
+  border-radius: 6px; /* arrotondo */
+  font-size: 14px; /* faccio piu piccolo*/
+  transition: 0.3s; /* un po di transition fluida */
+}
+
+#bottone-tema:hover {
+  background-color: rgba(235, 223, 223, 0.081); /* sfondino per l hover*/
+}
+
+/* bootne arancione */
+#btn-aggiungi {
+  background-color: #e67e22; /* sfondo arancione */
+  color: #ffffff; /* testo bianco */
+  padding: 10px 25px; /* un po piu visibile */
+  border-radius: 6px; /* arrotondato */
+}
+
+.form h2 {
+  margin-bottom: 15px; /* distanzia il titolo */
+}
+
+#form-libro {
+  display: flex;
+  flex-direction: column; /* form sopra e bottne sotto */
+  gap: 15px; /* un po di gap */
+  background-color: #f9f9f9; /* sfondo grigino*/
+  padding: 20px; /* un po di forma*/
+  border-radius: 8px; /* arrotondato*/
+  margin-bottom: 30px; /* distanzia un pelo da sotto*/
+}
+
+/* campi input */
+.form-inputs {
+  display: flex;
+  flex-wrap: wrap; /* non si distrugge in schermi piccoli */
+  gap: 10px; /* distanza tra di loro*/
+}
+
+.form-inputs input,
+.form-inputs select {
+  flex: 1; /* ben distanziati */
+  min-width: 150px; /* non troppo piccoli */
+}
+
+.controlli {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+#input-ricerca {
+  flex: 2; /* input ricerca abbastanza largo */
+}
+#ordine-anno {
+  min-width: fit-content;
+}
+
+.statistiche {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+/* distanza tra i contatori */
+.contatori {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+/* numeri piu grandi e gialli */
+.num-giallo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #f1c411;
+  margin-right: 8px;
+}
+
+.titolino-statistiche {
+  color: #706e6e;
+  font-size: 14px;
+}
+
+/* contenirore barra */
+.barra-progresso-container {
+  background-color: #e0e0e0;
+  height: 12px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+/* connettere a javascript dopo */
+#barra-progresso {
+  background-color: #f1c411;
+  height: 100%; /* altezza completa */
+  width: 0%; /* width che comandero in js */
+  border-radius: 10px;
+  transition: width 0.5s ease; /* un po di animazione aggiuntiva */
+}
+
+/* griglia dei libri */
+.lista {
+  display: grid;
+  grid-template-columns: 1fr; /* tutto lo spazio */
+  gap: 15px;                  /* un po di gap */
+  width: 100%;  
+
+}
+
+/* stile schede libro */
+.card-libro {
+  background: #fcfff9;
+  border: 1px solid #e0e0e0;
+  border-left: 5px solid #e67e22; /* bordino se da leggere */
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* un po di ombra */
+  display: flex;
+  justify-content: space-between; /* info a sinistra e bottoni a destra */
+  align-items: center;
+  margin-bottom: 12px;
+}
+.info-libro h3 {
+  font-size: 16px;
+  color: #111111;
+  margin-bottom: 4px;
+}
+.descrizione-libro {
+  color: #706e6e;
+  font-size: 14px;
+}
+
+.azioni-libro {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* targhette da leggere e letto */
+.badge-stato {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge-stato.da-leggere {
+  background-color: #fef5ec;
+  color: #e67e22;
+}
+.badge-stato.letto {
+  background-color: #ebf9eb;
+  color: #2ecc71;
+}
+.card-libro.letto {
+  border-left-color: #2ecc71; /* bordino se letto*/
+}
+
+/* bottoni delle card */
+.azioni-libro button {
+  padding: 6px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 30px;
+  font-size: 13px;
+  background-color: #ffffff;
+  color: #333333;
+  transition: background 0.2s;
+}
+.azioni-libro button:hover {
+  background-color: #f5f5f5;
+}
+
+.nessun-risultato {
+  text-align: center;
+  color: #999999;
+  font-style: italic;
+  padding: 20px;
+  width: 100%;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #a49d9d;
+  font-size: 12px;
+  border-top: 1px solid #eeeeee;
+  margin-top: 50px;
+}
+
+/* qui tutta la parte di css che si attiva dal js toccando il bottone tema scuro/chiaro */
+
+/* sfondo */
+body.dark {
+  background-color: #17191d;
+  color: #ffffff;
+}
+
+/* form */
+body.dark #form-libro,
+body.dark .statistiche {
+  background-color: #212429;
+}
+
+/* campi input */
+body.dark input[type="text"],
+body.dark input[type="number"],
+body.dark select {
+  background-color: #1b1d22;
+  border-color: #31353d;
+  color: #ffffff;
+}
+
+/* card libri */
+body.dark .card-libro {
+  background-color: #212429;
+  border-color: #31353d;
+  color: #ffffff;
+}
+
+/* colore titolino */
+body.dark .titolino-statistiche {
+  color: #a0a5b0;
+}
+
+/* Notifica nascosta di default */
+#notifica {
+  display: none; /* solo javascript puo mostrarla */
+  position: fixed; /* la faccio fluttuare */
+  bottom: 20px; /* un po di distanza dal fondo */
+  right: 20px; /* distanza dalla destra */
+  background-color: #333333; /* sfondino scuro */
+  color: #ffffff; /* testo */
+  padding: 12px 24px; /* un po di padding */
+  border-radius: 15px; /* radius */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* ombra per effeto 3d */
+  z-index: 1000; /* visualizza sopra gli altri elementi */
+  font-size: 14px;
+}
