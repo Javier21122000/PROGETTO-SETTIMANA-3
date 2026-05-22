@@ -70,6 +70,16 @@ let ordinamentoCorrente = "crescente";
 // il testo vuoto per permettere all utente di scrvere
 let ricercaCorrente = "";
 
+// ES 7. funzione di Persistenza nella pagina di dati salvati local Storage
+
+//mi creo un oggetto di dati salavati
+const datiSalvati = localStorage.getItem("libri-salvati");
+// se ho dei dati salvati
+if (datiSalvati) {
+  // uso un jsonparse per ricreare un nuovo array con i dati salvati
+  libri = JSON.parse(datiSalvati);
+}
+
 // ES 1. RENDER() Una sola funzione che ridipinge la lista.
 
 function render() {
@@ -106,17 +116,20 @@ function render() {
 
   // 4. svuoto html per non avere duplicati strani
   containerLista.innerHTML = "";
+  //controllo se la ricerca è vuota ossia mi da zero
+  if (libriFiltrati.length === 0) {
+    containerLista.innerHTML = `<p class="nessun-risultato">Nessun libro corrisponde alla ricerca</p>`;
+  } else {
+    // altrimenti creo finalmente le card usando la reference al div dell html
+    libriFiltrati.forEach(function (libro) {
+      // creo un oggetto card per permettermi di scrivere nell html le card
+      const card = document.createElement("div");
 
-  // 5. creo finalmente le card usando la reference al div dell html
-  libriFiltrati.forEach(function (libro) {
-    // creo un oggetto card per permettermi di scrivere nell html le card
-    const card = document.createElement("div");
+      // collego lo stato letto o meno al css che ho dichiarato prima
+      card.className = `card-libro ${libro.stato === "letto" ? "letto" : ""}`;
 
-    // collego lo stato letto o meno al css che ho dichiarato prima
-    card.className = `card-libro ${libro.stato === "letto" ? "letto" : ""}`;
-
-    // inserisco tioli , titolini e i testi dentro le card
-    card.innerHTML = `
+      // inserisco tioli , titolini e i testi dentro le card
+      card.innerHTML = `
   <div class="info-libro">
     <h3>${libro.titolo}</h3>
     <p class="titolino-statistiche">Autore: ${libro.autore}</p>
@@ -124,16 +137,17 @@ function render() {
   </div>
   <div class="azioni-libro">
     <button class="btn-stato" data-id="${libro.id}">
-      ${libro.stato === "letto" ? "Da leggere" : "Segna letto"}
+      ${libro.stato === "letto" ? "Segna da leggere" : "Segna letto"}
     </button>
+     <button class="btn-modifica" data-id="${libro.id}">Modifica</button>
     <button class="btn-elimina" data-id="${libro.id}">Elimina</button>
   </div>
 `;
 
-    // appendo la card alla lista
-    containerLista.appendChild(card);
-  });
-
+      // appendo la card alla lista
+      containerLista.appendChild(card);
+    });
+  }
   // 6.aggiorno contatori e vari barre e numeri
   const totaleLibri = libri.length;
 
@@ -226,7 +240,7 @@ listaLibriContainer.addEventListener("click", function (event) {
     render();
   }
 
-  // parte 2, cosa fa invece il bottone di stato
+  // cosa fa invece il bottone di stato
   if (elementoCliccato.classList.contains("btn-stato")) {
     // uso la funzione find per cercare un id spceifico
     const libroTrovato = libri.find(function (libro) {
@@ -241,10 +255,52 @@ listaLibriContainer.addEventListener("click", function (event) {
         libroTrovato.stato = "letto"; //viceversa
       }
     }
-
-    // riaggiorno la pagina
     render();
   }
+  // cosa fa invece il bottone di modifica
+  if (elementoCliccato.classList.contains("btn-modifica")) {
+    const libroTrovato = libri.find(function (libro) {
+      return libro.id === idLibro;
+    });
+
+    if (libroTrovato) {
+      // avvicniati all h3 piu vicino della tua card
+      const cardPadre = elementoCliccato.closest(".card-libro");
+      const tagTitolo = cardPadre.querySelector("h3");
+
+      // crea un input temporaneo
+      const inputTemporaneo = document.createElement("input");
+      inputTemporaneo.type = "text";
+      inputTemporaneo.value = libroTrovato.titolo;
+      inputTemporaneo.className = "input-modifica-inline";
+
+      // sostituisci il testo con il mio nuovo imput
+      tagTitolo.replaceWith(inputTemporaneo);
+      inputTemporaneo.focus(); // curosre dentro linput
+
+      // funzione per salvare il titolo
+      function salvaModifica() {
+        const nuovoTitolo = inputTemporaneo.value.trim();
+        if (nuovoTitolo !== "") {
+          libroTrovato.titolo = nuovoTitolo; // aggiorno lo stato globale
+          notifica("Titolo modificato con successo!");
+        }
+        render(); // ricarico
+      }
+
+      // se clicco fuori vai in blur e salva lo stesso
+      inputTemporaneo.addEventListener("blur", salvaModifica);
+
+      // se premo invio salva
+      inputTemporaneo.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          salvaModifica();
+        }
+      });
+    }
+  }
+
+  // riaggiorno la pagina
 });
 
 /* ES 4  RICERCA, FILTRO, ORDINAMENTO gestisco la ricerca e cosa fanno i vari filtri di stato e di anno
@@ -330,16 +386,6 @@ btnTema.addEventListener("click", function () {
   // notifica di banner per tema aggiornato con successo
   notifica("Tema della pagina aggiornato!");
 });
-
-// ES 7. funzione di Persistenza nella pagina di dati salvati local Storage
-
-//mi creo un oggetto di dati salavati
-const datiSalvati = localStorage.getItem("libri-salvati");
-// se ho dei dati salvati
-if (datiSalvati) {
-  // uso un jsonparse per ricreare un nuovo array con i dati salvati
-  libri = JSON.parse(datiSalvati);
-}
 
 /* CATEGORIE
    Aggiungi un campo categoria nello schema. Nel form un <select> per sceglierla.

@@ -182,9 +182,8 @@ select {
 .lista {
   display: grid;
   grid-template-columns: 1fr; /* tutto lo spazio */
-  gap: 15px;                  /* un po di gap */
-  width: 100%;  
-
+  gap: 15px; /* un po di gap */
+  width: 100%;
 }
 
 /* stile schede libro */
@@ -294,9 +293,17 @@ body.dark .card-libro {
   color: #ffffff;
 }
 
+body.dark .info-libro h3 {
+  color: #ffffff;
+}
+
 /* colore titolino */
 body.dark .titolino-statistiche {
   color: #a0a5b0;
+}
+
+body.dark footer {
+  border-top-color: #31353d;
 }
 
 /* Notifica nascosta di default */
@@ -312,4 +319,15 @@ body.dark .titolino-statistiche {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* ombra per effeto 3d */
   z-index: 1000; /* visualizza sopra gli altri elementi */
   font-size: 14px;
+}
+
+/* stile dell input temporaneo */
+.input-modifica-inline {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 4px 8px !important;
+  border: 1px solid chocolate !important;
+  background-color: #ffffff;
+  color: #111111;
+  border-radius: 4px;
 }
